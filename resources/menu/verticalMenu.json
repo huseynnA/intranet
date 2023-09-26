@@ -1,0 +1,40 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Əsas səhifə",
+      "icon": "menu-icon tf-icons mdi mdi-home-circle",
+      "slug": "home"
+    },
+    {
+      "url": "/blog",
+      "name": "Elanlar",
+      "icon": "menu-icon tf-icons mdi mdi mdi-post",
+      "slug": "blog"
+    },
+    {
+      "menuHeader": "Qonaq"
+    },
+    {
+      "url": "/guestdashboard",
+      "name": "Ümumi",
+      "icon": "menu-icon tf-icons mdi mdi-chart-bar",
+      "slug": "guestdashboard"
+    },
+    {
+      "url": "/guest",
+      "name": "Qonaqlar",
+      "icon": "menu-icon tf-icons mdi mdi-account-arrow-right",
+      "slug": "guest"
+    },
+    {
+      "menuHeader": "Şəxsi kabinet"
+    },
+    {
+      "url": "pages/profile-user",
+      "name": "Profil",
+      "icon": "menu-icon tf-icons mdi mdi-account",
+      "slug": "pages-profile-user"
+    }
+  ]
+}
