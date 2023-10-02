@@ -9,5 +9,17 @@ class GuestList extends Model
 {
   use HasFactory;
 
-  protected $fillable = ['fullname', 'purpose', 'division', 'id', 'emekdas', 'nomre', 'tarix', 'note'];
+  protected $fillable = [
+    'fullname',
+    'purpose',
+    'division',
+    'id',
+    'emekdas',
+    'nomre',
+    'tarix',
+    'note',
+    'nov',
+    'giris',
+    'cixis',
+  ];
 }

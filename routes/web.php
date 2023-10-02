@@ -290,5 +290,9 @@ Route::resource('/user-list', UserManagement::class);
 // My own
 Route::get('/guestdashboard', [GuestManagment::class, 'GuestManagement'])->name('guestdashboard');
 Route::get('/guest', [GuestManagment::class, 'guestindex'])->name('guest');
+Route::get('/guestenter/{id}', [GuestManagment::class, 'guestenter'])->name('guestenter');
+Route::get('/guestexit/{id}', [GuestManagment::class, 'guestexit'])->name('guestexit');
 Route::resource('/guest-list', GuestManagment::class);
 Route::get('/blog', $controller_path . '\cards\CardBasic@index')->name('blog');
+Route::get('/meeting', $controller_path . '\apps\Calendar@index')->name('meeting');
+Route::get('/managment', $controller_path . '\cards\CardGamifications@index')->name('managment');

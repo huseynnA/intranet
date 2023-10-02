@@ -9,6 +9,6 @@ class CardGamifications extends Controller
 {
   public function index()
   {
-    return view('content.cards.cards-gamifications');
+    return view('intranet.managment');
   }
 }

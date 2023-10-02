@@ -7,10 +7,22 @@
       "slug": "home"
     },
     {
+      "url": "/managment",
+      "name": "Rəhbərlik",
+      "icon": "menu-icon tf-icons mdi mdi mdi-account-tie",
+      "slug": "managment"
+    },
+    {
       "url": "/blog",
       "name": "Elanlar",
       "icon": "menu-icon tf-icons mdi mdi mdi-post",
       "slug": "blog"
+    },
+    {
+      "url": "/meeting",
+      "name": "İclaslar",
+      "icon": "menu-icon tf-icons mdi mdi mdi-calendar",
+      "slug": "meeting"
     },
     {
       "menuHeader": "Qonaq"

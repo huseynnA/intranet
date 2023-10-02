@@ -10,6 +10,11 @@
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/animate-css/animate.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/flatpickr/flatpickr.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/pickr/pickr-themes.css')}}" />
 @endsection
 
 @section('vendor-script')
@@ -22,10 +27,17 @@
 <script src="{{asset('assets/vendor/libs/cleavejs/cleave.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/cleavejs/cleave-phone.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/moment/moment.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/flatpickr/flatpickr.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/jquery-timepicker/jquery-timepicker.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/pickr/pickr.js')}}"></script>
 @endsection
 
 @section('page-script')
 <script src="{{asset('js/guest-managment.js')}}"></script>
+<script src="{{asset('assets/js/forms-pickers.js')}}"></script>
 @endsection
 
 @section('content')
@@ -42,8 +54,11 @@
           <th></th>
           <th>Id</th>
           <th>Ad və Soyad</th>
-          <th>Qəbul edən şöbə</th>
-          <th>Tarix</th>
+          <th>Qəbul edən əməkdaş və şöbə</th>
+          <th>Zİyarətİn növü</th>
+          <th>Gəlmə tarİxİ və Saat</th>
+          <th>Gİrİş</th>
+          <th>Çıxış</th>
           <th>Hərəkət</th>
         </tr>
       </thead>
@@ -63,27 +78,35 @@
           <label for="add-guest-fullname">Ad və Soyadı</label>
         </div>
         <div class="form-floating form-floating-outline mb-4">
-          <select id="division" class="form-select" name="division">
+          <select id="add-guest-division" class="form-select" name="division">
             <option value="İnsan resursları">İnsan resursları</option>
             <option value="İnformasiya texnologoiyaları">İnformasiya texnologoiyaları</option>
           </select>
-          <label for="division">Qəbul edən şöbə</label>
+          <label for="add-guest-division">Qəbul edən şöbə</label>
         </div>
         <div class="form-floating form-floating-outline mb-4">
-          <select id="emekdas" class="select2 form-select" name="emekdas">
+          <select id="add-guest-nov" class="form-select" name="nov">
+            <option value="Vətəndaş">Vətəndaş</option>
+            <option value="Əməkdaş">Əməkdaş</option>
+            <option value="Qonaq">Qonaq</option>
+          </select>
+          <label for="add-guest-nov">İlkin ziyarət növü</label>
+        </div>
+        <div class="form-floating form-floating-outline mb-4">
+          <select id="add-guest-emekdas" class="select2 form-select" name="emekdas">
             <option value="">Seçim et</option>
             <option value="Ramin Şıxəliyev">Ramin Şıxəliyev</option>
             <option value="Anar Həsənov">Anar Həsənov</option>
           </select>
-          <label for="emekdas">Qəbul edən əməkdaş</label>
+          <label for="add-guest-emekdas">Qəbul edən əməkdaş</label>
         </div>
         <div class="form-floating form-floating-outline mb-4">
           <input type="text" id="add-guest-phone" class="form-control" placeholder="+994 50 0000000" aria-label="+994 50000000" name="phone" />
           <label for="add-guest-phone">Əlaqə nömrəsi</label>
         </div>
         <div class="form-floating form-floating-outline mb-4">
-          <input type="date" id="add-guest-date" class="form-control phone-mask" placeholder="" aria-label="" name="tarix" />
-          <label for="add-guest-date">Tarix və saat</label>
+          <input type="text" class="form-control" placeholder="YYYY-MM-DD HH24:MM" id="flatpickr-datetime" name="tarix"/>
+            <label for="flatpickr-datetime">Tarix və saat</label>
         </div>
         <div class="form-floating form-floating-outline mb-4">
           <input type="text" id="add-guest-purpose" name="purpose" class="form-control" placeholder="İşlə bağlı" aria-label="" />

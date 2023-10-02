@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\GuestList;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
+use DB;
 
 class GuestManagment extends Controller
 {
@@ -32,8 +34,19 @@ class GuestManagment extends Controller
     # 'notVerified' => $notVerified,
     #  'userDuplicates' => $userDuplicates,
     #]);
+    $todays = GuestList::where('tarix', Carbon::today())->count();
+    $todays_daxil = GuestList::whereNull('cixis')->count();
+    $todays_cixis = GuestList::whereNotNull('cixis')->count();
 
-    return view('intranet.guest_list');
+    $list = GuestList::orderby('tarix')
+      ->limit(10)
+      ->get();
+
+    return view('intranet.guest_list')
+      ->with('todays', $todays)
+      ->with('todays_daxil', $todays_daxil)
+      ->with('todays_cixis', $todays_cixis)
+      ->with('list', $list);
   }
 
   public function guestindex()
@@ -49,8 +62,12 @@ class GuestManagment extends Controller
     $columns = [
       1 => 'id',
       2 => 'name',
-      3 => 'email',
-      4 => 'email_verified_at',
+      3 => 'division',
+      4 => 'nov',
+      5 => 'emekdas',
+      6 => 'phone',
+      5 => 'tarix',
+      5 => 'purpose',
     ];
 
     $search = [];
@@ -65,14 +82,14 @@ class GuestManagment extends Controller
     $dir = $request->input('order.0.dir');
 
     if (empty($request->input('search.value'))) {
-      $users = GuestList::offset($start)
+      $guests = GuestList::offset($start)
         ->limit($limit)
         // ->orderBy($order, $dir)
         ->get();
     } else {
       $search = $request->input('search.value');
 
-      $users = GuestList::where('fullname', 'LIKE', "%{$search}%")
+      $guests = GuestList::where('fullname', 'LIKE', "%{$search}%")
         ->offset($start)
         ->limit($limit)
         // ->orderBy($order, $dir)
@@ -83,16 +100,32 @@ class GuestManagment extends Controller
 
     $data = [];
 
-    if (!empty($users)) {
+    if (!empty($guests)) {
       // providing a dummy id instead of database ids
       $ids = $start;
 
-      foreach ($users as $user) {
+      foreach ($guests as $user) {
         $nestedData['id'] = $user->id;
         $nestedData['fake_id'] = ++$ids;
         $nestedData['name'] = $user->fullname;
-        $nestedData['email'] = $user->purpose;
+        $nestedData['division'] = $user->division;
+        $nestedData['nov'] = $user->nov;
+        $nestedData['emekdas'] = $user->emekdas;
+        $nestedData['purpose'] = $user->purpose;
+        $nestedData['nomre'] = $user->nomre;
+        $nestedData['tarix'] =
+          Carbon::parse($user->tarix)->locale('az')->day .
+          ' ' .
+          Carbon::parse($user->tarix)->locale('az')->monthName .
+          ' ' .
+          Carbon::parse($user->tarix)->locale('az')->year .
+          ' ' .
+          Carbon::parse($user->tarix)
+            ->locale('az')
+            ->toTimeString();
         $nestedData['email_verified_at'] = $user->status;
+        $nestedData['giris'] = $user->giris;
+        $nestedData['cixis'] = $user->cixis;
 
         $data[] = $nestedData;
       }
@@ -137,14 +170,16 @@ class GuestManagment extends Controller
         [
           'fullname' => $request->name,
           'purpose' => $request->purpose,
-          'division' => $request->divison,
+          'division' => $request->division,
           'nomre' => $request->phone,
+          'nov' => $request->nov,
+          'tarix' => $request->tarix,
           'emekdas' => $request->emekdas,
         ]
       );
 
       // user updated
-      return response()->json('dəyişdirildi.');
+      return response()->json('dəyişdirildi');
     } else {
       // create new one if email is unique
       $userEmail = GuestList::where('fullname', $request->email)->first();
@@ -157,6 +192,8 @@ class GuestManagment extends Controller
             'purpose' => $request->purpose,
             'division' => $request->divison,
             'nomre' => $request->phone,
+            'nov' => $request->nov,
+            'tarix' => $request->tarix,
             'emekdas' => $request->emekdas,
           ]
         );
@@ -185,9 +222,9 @@ class GuestManagment extends Controller
   {
     $where = ['id' => $id];
 
-    $users = GuestList::where($where)->first();
+    $guests = GuestList::where($where)->first();
 
-    return response()->json($users);
+    return response()->json($guests);
   }
 
   /**
@@ -204,5 +241,19 @@ class GuestManagment extends Controller
   public function destroy(string $id)
   {
     //
+  }
+
+  public function guestenter($id)
+  {
+    $affected = DB::table('guest_lists')
+      ->where('id', $id)
+      ->update(['giris' => Carbon::now()]);
+  }
+
+  public function guestexit($id)
+  {
+    $affected = DB::table('guest_lists')
+      ->where('id', $id)
+      ->update(['cixis' => Carbon::now()]);
   }
 }
