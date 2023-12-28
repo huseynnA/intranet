@@ -21,5 +21,9 @@ class GuestList extends Model
     'nov',
     'giris',
     'cixis',
+    'cins',
+    'companyname',
+    'docno',
+    'beledci',
   ];
 }

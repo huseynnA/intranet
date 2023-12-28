@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Qonaq qəbulu ')
+@section('title', 'Avtomobil siyahısı ')
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
@@ -36,7 +36,7 @@
 @endsection
 
 @section('page-script')
-<script src="{{asset('js/guest-managment.js')}}"></script>
+<script src="{{asset('js/vehicle-managment.js')}}"></script>
 <script src="{{asset('assets/js/forms-pickers.js')}}"></script>
 @endsection
 
@@ -45,119 +45,110 @@
 <!-- Users List Table -->
 <div class="card">
   <div class="card-header">
-    <h5 class="card-title mb-0">Qonaqların siyahısı</h5>
+    <h5 class="card-title mb-0">Avtomobil siyahısı</h5>
   </div>
   <div class="card-datatable table-responsive">
-    <table class="datatables-guests table">
+    <table class="datatables-Vehicles table">
       <thead class="table-light">
         <tr>
           <th></th>
           <th>Id</th>
-          <th>Ad və Soyad</th>
-          <th>Qəbul edən əməkdaş və şöbə</th>
-          <th>Zİyarətİn növü</th>
-          <th>Gəlmə tarİxİ və Saat</th>
-          <th>Gİrİş</th>
-          <th>Çıxış</th>
+          <th>Dövlət nömrə nişanı</th>
+          <th>Markası/İli/Tonajı/Gücü</th>
+          <th>Tipi/ Motor tipi</th>
+          <th>Növləri</th>
+          <th>Ümumi yürüş</th>
+          <th>Sex</th>
           <th>Hərəkət</th>
         </tr>
       </thead>
     </table>
   </div>
-  <!-- Offcanvas to add new guest -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddGuest" aria-labelledby="offcanvasAddGuestLabel">
+  <!-- Offcanvas to add new Vehicle -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAddVehicle" aria-labelledby="offcanvasAddVehicleLabel">
     <div class="offcanvas-header">
-      <h5 id="offcanvasAddGuestLabel" class="offcanvas-title">Yeni Qonaq</h5>
+      <h5 id="offcanvasAddVehicleLabel" class="offcanvas-title">Yeni Avtomobil</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
-      <form class="add-new-guest pt-0" id="addNewGuestForm">
-        <input type="hidden" name="id" id="guest_id">
+      <form class="add-new-Vehicle pt-0" id="addNewVehicleForm">
+        <input type="hidden" name="id" id="vehicle_id">
         <div class="form-floating form-floating-outline mb-4">
-          <select id="add-guest-nov" class="form-select" name="nov">
-            @foreach ($ziyaretnov as $item)
+          <input type="text" class="form-control" id="add-Vehicle-plate" placeholder="99-TR-001" name="vehicle_plate" aria-label="99-TR-001" />
+          <label for="add-Vehicle-plate">Dövlət nömrə nişanı</label>
+        </div>
+        <div class="form-floating form-floating-outline mb-4">
+          <select id="add-Vehicle-mark" class="form-select" name="id_vehicle_marks">
+            @foreach ($marks as $item)
+            <option value="{{ $item->id}}">{{ $item->title}}</option>
+            @endforeach
+          </select>
+          <label for="add-Vehicle-mark">A/maşının markası</label>
+        </div>
+        <div class="form-floating form-floating-outline mb-4">
+          <input type="text" class="form-control" id="add-Vehicle-year" placeholder="2016" name="vehicle_year" aria-label="2016" />
+          <label for="add-Vehicle-year">Buraxılış ili</label>
+        </div>
+        <div class="form-floating form-floating-outline mb-4">
+          <select id="add-vehicle-type" class="form-select" name="id_vehicle_type">
+            @foreach ($types as $item)
             <option value="{{$item->id}}">{{$item->title}}</option>
             @endforeach
           </select>
-          <label for="add-guest-nov">Ziyarətçi növü</label>
+          <label for="add-Vehicle-type">A/maşının tipi</label>
         </div>
         <div class="form-floating form-floating-outline mb-4">
-          <input type="text" class="form-control" id="add-guest-fullname" placeholder="Ramin Şıxəliyev" name="name" aria-label="John Doe" />
-          <label for="add-guest-fullname">Ziyarətçinin ad və soyadı</label>
-        </div>
-        <div class="form-floating form-floating-outline mb-4">
-          <select id="add-guest-cins" class="form-select" name="cins">
-            <option value="0">Kişi</option>
-            <option value="1">Qadın</option>
-          </select>
-          <label for="add-guest-nov">Ziyarətçinin cinsi</label>
-        </div>
-        <div class="form-floating form-floating-outline mb-4">
-          <input type="text" class="form-control" id="add-guest-company" placeholder="" name="companyname" />
-          <label for="add-guest-company">Müəssisə adı</label>
-        </div>
-        <div class="form-floating form-floating-outline mb-4">
-          <select id="add-guest-document" class="form-select" name="documenttype">
-            @foreach ($documenttype as $item)
-            <option value="{{$item->id}}">{{$item->title}}</option>
+          <select id="add-vehicle-tons" class="form-select" name="id_vehicle_tons">
+            @foreach ($tons as $item)
+            <option value="{{ $item->id}}">{{ $item->title}}</option>
             @endforeach
           </select>
-          <label for="add-guest-document">Təqdim etdiyi sənəd</label>
+          <label for="add-Vehicle-emekdas">Tonajı</label>
         </div>
         <div class="form-floating form-floating-outline mb-4">
-          <input type="text" class="form-control" id="add-guest-docno" placeholder="Ramin Şıxəliyev" name="docno" aria-label="John Doe" />
-          <label for="add-guest-docno">Sənədin nömrəsi</label>
+          <input type="text" class="form-control" id="add-Vehicle-power" placeholder="2445" value="{{ old('vehicle_power') }}" name="vehicle_power" aria-label="2445" />
+          <label for="add-Vehicle-power">Gücü a/ğ</label>
         </div>
         <div class="form-floating form-floating-outline mb-4">
-          <select id="add-guest-yesno" class="form-select" name="docrefund">
-            <option value="0">Bəli</option>
-            <option value="1">Xeyr</option>
-          </select>
-          <label for="add-guest-yesno">Sənəd təhvil verilib</label>
+          <input type="text" class="form-control" id="add-Vehicle-averege" placeholder="34.5" value="{{ old('vehicle_averages') }}" name="vehicle_averages" aria-label="2445" />
+          <label for="add-Vehicle-averege">100 km yürüş üçün yanacaq sərfi norması (litr) </label>
         </div>
         <div class="form-floating form-floating-outline mb-4">
-          <select id="add-guest-document" class="form-select" name="documenttype">
-            @foreach ($zipurpose as $item)
-            <option value="{{$item->id}}">{{$item->title}}</option>
+          <input type="text" class="form-control" id="add-Vehicle-hour-averege" placeholder="5.2" value="{{ old('vehicle_hour_avg') }}" name="vehicle_hour_avg" aria-label="2445" />
+          <label for="add-Vehicle-hour-averege">Bir moto/saat üçün  yanacağın sərfi (litr) </label>
+        </div>
+        <div class="form-floating form-floating-outline mb-4">
+          <input type="text" class="form-control" id="add-Vehicle-day-norm" placeholder="30" value="{{ old('vehicle_day_norm') }}" name="vehicle_day_norm" aria-label="2445" />
+          <label for="add-Vehicle-day-norm">Bir gün. yanac norm. (litr) </label>
+        </div>
+        <div class="form-floating form-floating-outline mb-4">
+          <select id="add-vehicle-motors" class="form-select" name="id_vehicle_motors">
+            @foreach ($motors as $item)
+            <option value="{{ $item->id}}">{{ $item->title}}</option>
             @endforeach
           </select>
-          <label for="add-guest-document">Ziyarət səbəbi</label>
+          <label for="add-Vehicle-emekdas">Motor tipi</label>
         </div>
         <div class="form-floating form-floating-outline mb-4">
-          <textarea class="form-control h-px-100" id="add-guest-purpose" name="purpose" placeholder="Qeydlər..."></textarea>
-          <label for="add-guest-purpose">Ziyarət səbəbi (əlavə)</label>
+          <input type="text" class="form-control" id="add-Vehicle-odometer" placeholder="461000" value="{{ old('vehicle_odometer') }}" name="vehicle_odometer" aria-label="2445" />
+          <label for="add-Vehicle-odometer">Ümumi yürüş </label>
         </div>
         <div class="form-floating form-floating-outline mb-4">
-          <select id="add-guest-division" class="form-select" name="division">
-            <option value="İnsan resursları">İnsan resursları</option>
-            <option value="İnformasiya texnologoiyaları">İnformasiya texnologoiyaları</option>
+          <select id="add-Vehicle-status" class="form-select" name="id_vehicle_statuses">
+            @foreach ($status as $item)
+            <option value="{{ $item->id}}">{{ $item->title}}</option>
+            @endforeach
           </select>
-          <label for="add-guest-division">Qəbul edən struktur bölməsi</label>
+          <label for="add-Vehicle-emekdas">Texniki vəziyyəti</label>
         </div>
         <div class="form-floating form-floating-outline mb-4">
-          <select id="add-guest-emekdas" class="select2 form-select" name="emekdas">
-            <option value="">Seçim et</option>
-            <option value="Ramin Şıxəliyev">Ramin Şıxəliyev</option>
-            <option value="Anar Həsənov">Anar Həsənov</option>
+          <select id="add-vehicle-novs" class="form-select" name="id_vehicle_novs">
+            @foreach ($novs as $item)
+            <option value="{{ $item->id}}">{{ $item->title}}</option>
+            @endforeach
           </select>
-          <label for="add-guest-emekdas">Qəbul edən əməkdaş</label>
+          <label for="add-Vehicle-emekdas">Avtomobilin Növü</label>
         </div>
-        <div class="form-floating form-floating-outline mb-4">
-          <select id="add-guest-beledci" class="form-select" name="beledci">
-            <option value="0">Operativ bölmə əməkdaşı</option>
-            <option value="1">İdarə əməkdaşı</option>
-          </select>
-          <label for="add-guest-beledci">Bələdçi</label>
-        </div>
-        <div class="form-floating form-floating-outline mb-4">
-          <input type="text" id="add-guest-phone" class="form-control" placeholder="+994 50 0000000" aria-label="+994 50000000" name="phone" />
-          <label for="add-guest-phone">Əlaqə nömrəsi</label>
-        </div>
-        <div class="form-floating form-floating-outline mb-4">
-          <input type="text" class="form-control" placeholder="YYYY-MM-DD HH24:MM" id="flatpickr-datetime" name="tarix"/>
-            <label for="flatpickr-datetime">Tarix və saat</label>
-        </div>
-
         <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">TƏSDİQ ET</button>
         <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">İMTİNA</button>
       </form>

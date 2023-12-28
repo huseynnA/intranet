@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\GuestManagment;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\WaySheetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -296,3 +298,12 @@ Route::resource('/guest-list', GuestManagment::class);
 Route::get('/blog', $controller_path . '\cards\CardBasic@index')->name('blog');
 Route::get('/meeting', $controller_path . '\apps\Calendar@index')->name('meeting');
 Route::get('/managment', $controller_path . '\cards\CardGamifications@index')->name('managment');
+
+// Vehicle model
+Route::get('/vehicleboard', [VehicleController::class, 'GuestManagement'])->name('guestdashboard');
+Route::get('/vehicle', [VehicleController::class, 'vehicleindex'])->name('vehicle');
+Route::resource('/vehicle-list', VehicleController::class);
+Route::get('/waysheet', [WaySheetController::class, 'waysheet'])->name('waysheet');
+Route::post('/waysheet', [WaySheetController::class, 'waysheetpost'])->name('waysheetpost');
+Route::get('/waysheetreport', [WaySheetController::class, 'reportindex'])->name('waysheetreport');
+Route::post('/waysheetreport', [WaySheetController::class, 'report'])->name('waysheetreportpost');

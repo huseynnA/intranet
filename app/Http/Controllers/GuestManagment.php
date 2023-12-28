@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\GuestList;
+use App\Models\DocumentType;
+use App\Models\ZiyaretNov;
+use App\Models\ZiyaretPurpose;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use DB;
@@ -53,8 +56,14 @@ class GuestManagment extends Controller
   {
     $users = GuestList::all();
     $userCount = $users->count();
+    $ziyaretnov = ZiyaretNov::all();
+    $documenttype = DocumentType::all();
+    $zipurpose = ZiyaretPurpose::all();
 
-    return view('intranet.guest');
+    return view('intranet.guest')
+      ->with('ziyaretnov', $ziyaretnov)
+      ->with('documenttype', $documenttype)
+      ->with('zipurpose', $zipurpose);
   }
 
   public function index(Request $request)
@@ -175,6 +184,10 @@ class GuestManagment extends Controller
           'nov' => $request->nov,
           'tarix' => $request->tarix,
           'emekdas' => $request->emekdas,
+          'cins' => $request->cins,
+          'companyname' => $request->companyname,
+          'docno' => $request->docno,
+          'beledci' => $request->beledci,
         ]
       );
 
@@ -190,11 +203,15 @@ class GuestManagment extends Controller
           [
             'fullname' => $request->name,
             'purpose' => $request->purpose,
-            'division' => $request->divison,
+            'division' => $request->division,
             'nomre' => $request->phone,
             'nov' => $request->nov,
             'tarix' => $request->tarix,
             'emekdas' => $request->emekdas,
+            'cins' => $request->cins,
+            'companyname' => $request->companyname,
+            'docno' => $request->docno,
+            'beledci' => $request->beledci,
           ]
         );
 

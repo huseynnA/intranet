@@ -40,6 +40,33 @@
       "slug": "guest"
     },
     {
+      "menuHeader": "NƏQLİYYAT MODULU"
+    },
+    {
+      "url": "/vehicle",
+      "name": "Avtomobil siyahısı",
+      "icon": "menu-icon tf-icons mdi mdi-car-hatchback",
+      "slug": "vehicle"
+    },
+    {
+      "url": "/waysheet",
+      "name": "Yeni Yol vərəqəsi",
+      "icon": "menu-icon tf-icons mdi mdi-plus",
+      "slug": "waysheet"
+    },
+    {
+      "url": "/waysheetedit",
+      "name": "Yol vərəqəsi dəyiş",
+      "icon": "menu-icon tf-icons mdi mdi-table-edit",
+      "slug": "waysheetedit"
+    },
+    {
+      "url": "/waysheetreport",
+      "name": "Hesabat",
+      "icon": "menu-icon tf-icons mdi mdi-chart-bar",
+      "slug": "waysheetreport"
+    },
+    {
       "menuHeader": "Şəxsi kabinet"
     },
     {
