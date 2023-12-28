@@ -12,6 +12,13 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'users';
+
+    public const ROLE_USER = 0;
+    public const ROLE_MACHINIST = 1;
+    public const ROLE_ADMIN = 2;
+    public const ROLE_SADMIN = 3;
+    public static int $deactive=1;   //its equal 1 bceause it check deactived users
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +28,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'deactive',
     ];
 
     /**
@@ -41,4 +50,30 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function isUser()
+    {
+        return $this->role==self::ROLE_USER;        
+    }
+
+    public function isMachinist()
+    {
+        return $this->role===self::ROLE_MACHINIST;        
+    }
+
+    public function isAdmin()
+    {
+        return $this->role===self::ROLE_ADMIN;        
+    }
+
+    public function isSadmin()
+    {
+        return $this->role===self::ROLE_SADMIN;
+    }
+
+    public function isDeactive()
+    {
+        return $this->deactive===self::$deactive;
+    }
 }

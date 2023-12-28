@@ -17,10 +17,52 @@ use App\Http\Controllers\WaySheetController;
 |
 */
 
+
+
 $controller_path = 'App\Http\Controllers';
+Route::get('/', $controller_path . '\authentications\LoginBasic@index')->name('login');
+Route::delete('/logout', $controller_path . '\authentications\LoginBasic@logout')->name('logout');
+Route::post('/', $controller_path . '\authentications\LoginBasic@login')->name('loginpost');
+Route::get('/auth/login-cover', $controller_path . '\authentications\LoginCover@index')->name('auth-login-cover');
+Route::group(['middleware'=> 'user'],function(){
+  $controller_path = 'App\Http\Controllers';
+Route::get('/auth/register-basic', $controller_path . '\authentications\RegisterBasic@index')->name(
+  'auth-register-basic'
+);
+Route::get('/auth/register-cover', $controller_path . '\authentications\RegisterCover@index')->name(
+  'auth-register-cover'
+);
+Route::get('/auth/register-multisteps', $controller_path . '\authentications\RegisterMultiSteps@index')->name(
+  'auth-register-multisteps'
+);
+Route::get('/auth/verify-email-basic', $controller_path . '\authentications\VerifyEmailBasic@index')->name(
+  'auth-verify-email-basic'
+);
+Route::get('/auth/verify-email-cover', $controller_path . '\authentications\VerifyEmailCover@index')->name(
+  'auth-verify-email-cover'
+);
+Route::get('/auth/reset-password-basic', $controller_path . '\authentications\ResetPasswordBasic@index')->name(
+  'auth-reset-password-basic'
+);
+Route::get('/auth/reset-password-cover', $controller_path . '\authentications\ResetPasswordCover@index')->name(
+  'auth-reset-password-cover'
+);
+Route::get('/auth/forgot-password-basic', $controller_path . '\authentications\ForgotPasswordBasic@index')->name(
+  'auth-reset-password-basic'
+);
+Route::get('/auth/forgot-password-cover', $controller_path . '\authentications\ForgotPasswordCover@index')->name(
+  'auth-forgot-password-cover'
+);
+Route::get('/auth/two-steps-basic', $controller_path . '\authentications\TwoStepsBasic@index')->name(
+  'auth-two-steps-basic'
+);
+Route::get('/auth/two-steps-cover', $controller_path . '\authentications\TwoStepsCover@index')->name(
+  'auth-two-steps-cover'
+);
+
 
 // Main Page Route
-Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('home');
+Route::get('/home', $controller_path . '\dashboard\Analytics@index')->name('home');
 Route::get('/dashboard/analytics', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
 Route::get('/dashboard/crm', $controller_path . '\dashboard\Crm@index')->name('dashboard-crm');
 Route::get('/dashboard/ecommerce', $controller_path . '\dashboard\Ecommerce@index')->name('dashboard-ecommerce');
@@ -120,41 +162,7 @@ Route::get('/pages/misc-server-error', $controller_path . '\pages\MiscServerErro
 );
 
 // authentication
-Route::get('/auth/login-basic', $controller_path . '\authentications\LoginBasic@index')->name('auth-login-basic');
-Route::get('/auth/login-cover', $controller_path . '\authentications\LoginCover@index')->name('auth-login-cover');
-Route::get('/auth/register-basic', $controller_path . '\authentications\RegisterBasic@index')->name(
-  'auth-register-basic'
-);
-Route::get('/auth/register-cover', $controller_path . '\authentications\RegisterCover@index')->name(
-  'auth-register-cover'
-);
-Route::get('/auth/register-multisteps', $controller_path . '\authentications\RegisterMultiSteps@index')->name(
-  'auth-register-multisteps'
-);
-Route::get('/auth/verify-email-basic', $controller_path . '\authentications\VerifyEmailBasic@index')->name(
-  'auth-verify-email-basic'
-);
-Route::get('/auth/verify-email-cover', $controller_path . '\authentications\VerifyEmailCover@index')->name(
-  'auth-verify-email-cover'
-);
-Route::get('/auth/reset-password-basic', $controller_path . '\authentications\ResetPasswordBasic@index')->name(
-  'auth-reset-password-basic'
-);
-Route::get('/auth/reset-password-cover', $controller_path . '\authentications\ResetPasswordCover@index')->name(
-  'auth-reset-password-cover'
-);
-Route::get('/auth/forgot-password-basic', $controller_path . '\authentications\ForgotPasswordBasic@index')->name(
-  'auth-reset-password-basic'
-);
-Route::get('/auth/forgot-password-cover', $controller_path . '\authentications\ForgotPasswordCover@index')->name(
-  'auth-forgot-password-cover'
-);
-Route::get('/auth/two-steps-basic', $controller_path . '\authentications\TwoStepsBasic@index')->name(
-  'auth-two-steps-basic'
-);
-Route::get('/auth/two-steps-cover', $controller_path . '\authentications\TwoStepsCover@index')->name(
-  'auth-two-steps-cover'
-);
+
 
 // wizard example
 Route::get('/wizard/ex-checkout', $controller_path . '\wizard_example\Checkout@index')->name('wizard-ex-checkout');
@@ -307,3 +315,4 @@ Route::get('/waysheet', [WaySheetController::class, 'waysheet'])->name('waysheet
 Route::post('/waysheet', [WaySheetController::class, 'waysheetpost'])->name('waysheetpost');
 Route::get('/waysheetreport', [WaySheetController::class, 'reportindex'])->name('waysheetreport');
 Route::post('/waysheetreport', [WaySheetController::class, 'report'])->name('waysheetreportpost');
+});
