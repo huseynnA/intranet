@@ -80,7 +80,9 @@ $customizerHidden = 'customizer-hide';
               <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
             </div>
           </form>
-
+          @if($errors->any())
+<h4>{{$errors->first()}}</h4>
+@endif
           <p class="text-center">
             <span>New on our platform?</span>
             <a href="{{url('auth/register-basic')}}">

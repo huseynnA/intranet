@@ -6,10 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+
 class LoginBasic extends Controller
 { 
   public function index()
   { 
+  
+    if(Auth::user()!=null){
+      $role=Auth::user()->role;
+      return redirect()->route('home')->with('success', 'Login successful');
+    }
     $pageConfigs = ['myLayout' => 'blank'];
     return view('content.authentications.auth-login-basic', ['pageConfigs' => $pageConfigs]);
   }
@@ -21,38 +27,27 @@ class LoginBasic extends Controller
       'password' => $request->password,
   ];
 
+   $mechaniclayout=file_get_contents(base_path('resources/menu/verticalMenuMechanic.json'));
+  // $userlayout=json(path);
+  // $adminlayout=json(path);
+  // $sadminlayout=json(path);
   if (Auth::attempt($credentials)) {
-     
       $user = Auth::user();
-      // /return response()->json($user);
       session(['username' => $user->name]);
       if ($user->isUser()) {
-        
-          return redirect()->route('hoxase')->with('success', 'Login successful');
-      } elseif ($user->isSAdmin()) {
-        return 2;  
-        return redirect()->route('sadmin.home')->with('success', 'Login successful');
+          return redirect()->route('home')->with('success', 'Login successful');
+      } elseif ($user->isMachinist()) {
+        return redirect()->route('home')->with('success', 'Login successful');
       } else {
-        return 3;  
-
           return redirect()->route('home')->with('success', 'Login successful');
       }
   }
-  $verticalMenuJson = file_get_contents(base_path('resources/menu/verticalMenu.json'));
-  $verticalMenuData = json_decode($verticalMenuJson);
-  $horizontalMenuJson = file_get_contents(base_path('resources/menu/horizontalMenu.json'));
-  $horizontalMenuData = json_decode($horizontalMenuJson);
-
-  // Share all menuData to all the views
-  \View::share('menuData', [$verticalMenuData, $horizontalMenuData]);
-  return 4;
-  return back()->with('error', 'Email or password incorrect');
+  return redirect()->back()->withErrors(['msg' => 'User not valid']);
   }
-
-
 
   public function logout(){
     Session::flush();
+    Cookie::flush();
     Auth::logout();
     return redirect('login');
 }

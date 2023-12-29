@@ -59,17 +59,17 @@ class User extends Authenticatable
 
     public function isMachinist()
     {
-        return $this->role===self::ROLE_MACHINIST;        
+        return $this->role==self::ROLE_MACHINIST;        
     }
 
     public function isAdmin()
     {
-        return $this->role===self::ROLE_ADMIN;        
+        return $this->role==self::ROLE_ADMIN;        
     }
 
     public function isSadmin()
     {
-        return $this->role===self::ROLE_SADMIN;
+        return $this->role==self::ROLE_SADMIN;
     }
 
     public function isDeactive()

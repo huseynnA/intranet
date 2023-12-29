@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
-class isUser
+class IsMachinist
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,9 @@ class isUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && (Auth::user()->isUser() || Auth::user()->isMachinist() )) {
+        if (Auth::check() && Auth::user()->isMachinist() ) {
             return $next($request);
         }
-
-        abort(403, 'Unauthorized action.(U must be user)');
+        abort(403, 'Unauthorized action.(U must be machinist)');
     }
 }

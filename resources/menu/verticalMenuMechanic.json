@@ -1,0 +1,79 @@
+{
+    "menu": [
+      {
+        "url": "/",
+        "name": "Əsas səhifə",
+        "icon": "menu-icon tf-icons mdi mdi-home-circle",
+        "slug": "home"
+      },
+      {
+        "url": "/managment",
+        "name": "Rəhbərlik",
+        "icon": "menu-icon tf-icons mdi mdi mdi-account-tie",
+        "slug": "managment"
+      },
+      {
+        "url": "/blog",
+        "name": "Elanlar",
+        "icon": "menu-icon tf-icons mdi mdi mdi-post",
+        "slug": "blog"
+      },
+      {
+        "url": "/meeting",
+        "name": "İclaslar",
+        "icon": "menu-icon tf-icons mdi mdi mdi-calendar",
+        "slug": "meeting"
+      },
+      {
+        "menuHeader": "Qonaq"
+      },
+      {
+        "url": "/guestdashboard",
+        "name": "Ümumi",
+        "icon": "menu-icon tf-icons mdi mdi-chart-bar",
+        "slug": "guestdashboard"
+      },
+      {
+        "url": "/guest",
+        "name": "Qonaqlar",
+        "icon": "menu-icon tf-icons mdi mdi-account-arrow-right",
+        "slug": "guest"
+      },
+      {
+        "menuHeader": "NƏQLİYYAT MODULU"
+      },
+      {
+        "url": "/vehicle",
+        "name": "Avtomobil siyahısı",
+        "icon": "menu-icon tf-icons mdi mdi-car-hatchback",
+        "slug": "vehicle"
+      },
+      {
+        "url": "/waysheet",
+        "name": "Yeni Yol vərəqəsi",
+        "icon": "menu-icon tf-icons mdi mdi-plus",
+        "slug": "waysheet"
+      },
+      {
+        "url": "/waysheetedit",
+        "name": "Yol vərəqəsi dəyiş",
+        "icon": "menu-icon tf-icons mdi mdi-table-edit",
+        "slug": "waysheetedit"
+      },
+      {
+        "url": "/waysheetreport",
+        "name": "Hesabat",
+        "icon": "menu-icon tf-icons mdi mdi-chart-bar",
+        "slug": "waysheetreport"
+      },
+      {
+        "menuHeader": "Şəxsi kabinet"
+      },
+      {
+        "url": "pages/profile-user",
+        "name": "Profil",
+        "icon": "menu-icon tf-icons mdi mdi-account",
+        "slug": "pages-profile-user"
+      }
+    ]
+  }
