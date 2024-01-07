@@ -17,23 +17,24 @@ use App\Http\Controllers\WaySheetController;
 |
 */
 
-
-
 $controller_path = 'App\Http\Controllers';
+
+// login
 Route::get('/', $controller_path . '\authentications\LoginBasic@index')->name('login');
 Route::post('/', $controller_path . '\authentications\LoginBasic@login')->name('loginpost');
 //Route::get('/auth/login-cover', $controller_path . '\authentications\LoginCover@index')->name('auth-login-cover');
 
+//register
 Route::get('/register', $controller_path . '\authentications\RegisterBasic@index')->name(
   'auth-register-basic'
 );
-
 Route::post('/register',$controller_path.'\authentications\RegisterBasic@register')->name('registerpost');
 
 
 Route::get('/auth/register-cover', $controller_path . '\authentications\RegisterCover@index')->name(
   'auth-register-cover'
 );
+
 Route::delete('/logout', $controller_path . '\authentications\LoginBasic@logout')->name('logout');
 
 
@@ -316,10 +317,6 @@ Route::get('/meeting', $controller_path . '\apps\Calendar@index')->name('meeting
 Route::get('/managment', $controller_path . '\cards\CardGamifications@index')->name('managment');
 
 // Vehicle model
-
-});
-
-Route::middleware(['auth', 'machinist'])->group(function () {
   Route::get('/vehicleboard', [VehicleController::class, 'GuestManagement'])->name('guestdashboard');
   Route::get('/vehicle', [VehicleController::class, 'vehicleindex'])->name('vehicle');
   Route::resource('/vehicle-list', VehicleController::class);

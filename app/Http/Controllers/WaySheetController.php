@@ -10,6 +10,11 @@ use Illuminate\Validation\Rule;
 
 class WaySheetController extends Controller
 {
+
+  public function __construct()
+  {
+      $this->middleware('machinist');
+  }
   public function waysheet()
   {
     $vehicles = Vehicle::all();
