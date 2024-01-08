@@ -26,11 +26,6 @@ class LoginBasic extends Controller
       'email' => $request->email,
       'password' => $request->password,
   ];
-
-   $mechaniclayout=file_get_contents(base_path('resources/menu/verticalMenuMechanic.json'));
-  // $userlayout=json(path);
-  // $adminlayout=json(path);
-  // $sadminlayout=json(path);
   if (Auth::attempt($credentials)) {
       $user = Auth::user();
       session(['username' => $user->name]);
@@ -47,8 +42,7 @@ class LoginBasic extends Controller
 
   public function logout(){
     Session::flush();
-    Cookie::flush();
     Auth::logout();
-    return redirect('login');
+    return redirect('/');
 }
 }

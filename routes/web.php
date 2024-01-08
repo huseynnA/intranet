@@ -35,7 +35,8 @@ Route::get('/auth/register-cover', $controller_path . '\authentications\Register
   'auth-register-cover'
 );
 
-Route::delete('/logout', $controller_path . '\authentications\LoginBasic@logout')->name('logout');
+//logout
+Route::post('/logout', $controller_path . '\authentications\LoginBasic@logout')->name('logout');
 
 
 Route::group(['middleware'=> 'user'],function(){

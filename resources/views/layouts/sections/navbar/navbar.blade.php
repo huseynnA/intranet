@@ -120,7 +120,7 @@ $navbarDetached = ($navbarDetached ?? '');
                 <span class="align-middle">Çıxış</span>
               </a>
             </li>
-            <form method="DELETE" id="logout-form" action="{{ route('logout') }}">
+            <form method="POST" id="logout-form" action="{{ route('logout') }}">
               @csrf
             </form>
             @else
