@@ -26,17 +26,11 @@ class LoginBasic extends Controller
       'email' => $request->email,
       'password' => $request->password,
   ];
-  if (Auth::attempt($credentials)) {
+      if (Auth::attempt($credentials)) {
       $user = Auth::user();
       session(['username' => $user->name]);
-      if ($user->isUser()) {
-          return redirect()->route('home')->with('success', 'Login successful');
-      } elseif ($user->isMachinist()) {
-        return redirect()->route('home')->with('success', 'Login successful');
-      } else {
-          return redirect()->route('home')->with('success', 'Login successful');
-      }
-  }
+      return redirect()->route('home')->with('success', 'Login successful');
+    }
   return redirect()->back()->withErrors(['msg' => 'User not valid']);
   }
 

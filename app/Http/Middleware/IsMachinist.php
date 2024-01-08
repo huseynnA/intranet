@@ -14,6 +14,8 @@ class IsMachinist
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
+
+     //this middleware protect only machinist routes 
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check() && Auth::user()->isMachinist() ) {
