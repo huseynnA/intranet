@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function test()
     {
-        return view('users');
-        return User::all();
+        $users=User::select('position','role')->where('role','1')->get();
+        return response()->json($users);
     }
 }

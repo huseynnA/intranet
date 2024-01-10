@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('phone_number');
             $table->string('internal_number');
+            $table->string('profile_photo_url')->default('asset("assets/img/avatars/1.png")');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -58,6 +58,7 @@ class AdminrSeeder extends Seeder
             'country' => 'Azerbaijan',
             'phone_number' => '055-55f-5-5',
             'internal_number' => '055-55d-5-5',
+            'profile_photo_url'=>'https://a0.anyrgb.com/pngimg/1368/1520/marketer-person-icon-navigation-bar-bootstrap-dating-github-wordpress-avatar-user-cheek.png',
             'email' => 'sadmin@example.com',
             'password' => bcrypt('sadminpassword'),
             'position'=>'Admin',
@@ -70,11 +71,26 @@ class AdminrSeeder extends Seeder
             'country' => 'Azerbaijan',
             'phone_number' => '055-55-5-5',
             'internal_number' => '055-55-5-5',
+            'profile_photo_url'=>'https://a0.anyrgb.com/pngimg/954/884/dropdown-list-user-profile-profile-wordpress-avatar-person-heroes-user-body-jewelry-icons.png',
             'email' => 'machinist@example.com',
             'password' => bcrypt('userpassword'),
             'position'=>'Manager',
             'department'=>'IT',
             'role' => 2,
+        ]);
+
+        User::factory()->create([
+            'name' => ' Memmed', // Set the admin's name
+            'fullname' => ' Memmed Memmedov', // Set the admin's name
+            'country' => 'Azerbaijan',
+            'phone_number' => '055-55-5-5',
+            'internal_number' => '055-55-5-5',
+            'profile_photo_url'=>'asset("assets/img/avatars/1.png")',
+            'email' => 'memmed@example.com',
+            'password' => bcrypt('userpassword'),
+            'position'=>'Manager',
+            'department'=>'IT',
+         
         ]);
     }
 }

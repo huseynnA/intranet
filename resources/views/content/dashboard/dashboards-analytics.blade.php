@@ -44,7 +44,6 @@ $configData = Helper::appClasses();
       </div>
     </div>
   </div>
-
   <!-- Statistics Total Order -->
   <div class="col-lg-2 col-sm-6">
     <div class="card h-100">

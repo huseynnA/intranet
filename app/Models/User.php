@@ -30,6 +30,7 @@ class User extends Authenticatable
         'country',
         'phone_number',
         'internal number',
+        'profile_photo_url',
         'email',
         'password',
         'position',

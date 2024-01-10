@@ -26,8 +26,6 @@ class isUser
               
                 // Share all menuData to all the views
                 \View::share('menuData', [$verticalMenuData, $horizontalMenuData]);
-    
-    
             }
             return $next($request);
         }
