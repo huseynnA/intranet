@@ -51,14 +51,14 @@ $customizerHidden = 'customizer-hide';
                         @csrf 
           
           <div class="form-floating form-floating-outline mb-3">
-              <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email or username" autofocus>
+              <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email or username" autofocus value="machinist@example.com">
               <label for="email">Email or Username</label>
             </div>
             <div class="mb-3">
               <div class="form-password-toggle">
                 <div class="input-group input-group-merge">
                   <div class="form-floating form-floating-outline">
-                    <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                    <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"  value="userpassword"/>
                     <label for="password">Password</label>
                   </div>
                   <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>

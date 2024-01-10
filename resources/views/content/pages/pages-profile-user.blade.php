@@ -42,16 +42,16 @@
         <div class="flex-grow-1 mt-3 mt-sm-5">
           <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
             <div class="user-profile-info">
-              <h4>Ramin Şıxəliyev</h4>
+              <h4>{{ Auth::user()->fullname }}</h4>
               <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
                 <li class="list-inline-item">
-                  <i class='mdi mdi mdi-account-tie me-1 mdi-20px'></i><span class="fw-semibold">Baş Mütəxəssis</span>
+                  <i class='mdi mdi mdi-account-tie me-1 mdi-20px'></i><span class="fw-semibold">{{ Auth::user()->position }}</span>
                 </li>
                 <li class="list-inline-item">
-                  <i class='mdi mdi-map-marker-outline me-1 mdi-20px'></i><span class="fw-semibold">İnformasiya texnologiyaları</span>
+                  <i class='mdi mdi-map-marker-outline me-1 mdi-20px'></i><span class="fw-semibold">{{ Auth::user()->department}}</span>
                 </li>
                 <li class="list-inline-item">
-                  <i class='mdi mdi-calendar-blank-outline me-1 mdi-20px'></i><span class="fw-semibold"> İşə başlayıb 2021 Aprel </span></li>
+                  <i class='mdi mdi-calendar-blank-outline me-1 mdi-20px'></i><span class="fw-semibold"> {{ Auth::user()->started_work }} </span></li>
               </ul>
             </div>
           </div>
@@ -80,14 +80,14 @@
       <div class="card-body">
         <small class="card-text text-uppercase text-muted">Haqqında</small>
         <ul class="list-unstyled my-3 py-1">
-          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-account-outline mdi-24px"></i><span class="fw-semibold mx-2">Adı və Soyadı:</span> <span>Ramin Şıxəliyev</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-star-outline mdi-24px"></i><span class="fw-semibold mx-2">Vəzifə:</span> <span>Baş mütəxəssis</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-flag-outline mdi-24px"></i><span class="fw-semibold mx-2">Ölkə:</span> <span>Azərbaycan</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-account-outline mdi-24px"></i><span class="fw-semibold mx-2">Adı və Soyadı:</span> <span>{{ Auth::user()->fullname }}</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-star-outline mdi-24px"></i><span class="fw-semibold mx-2">Vəzifə:</span> <span>Baş {{ Auth::user()->position}}</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-flag-outline mdi-24px"></i><span class="fw-semibold mx-2">Ölkə:</span> <span>{{ Auth::user()->country}}</span></li>
         </ul>
         <small class="card-text text-uppercase text-muted">Əlaqələr</small>
         <ul class="list-unstyled my-3 py-1">
-          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-phone-outline mdi-24px"></i><span class="fw-semibold mx-2">Əlaqə:</span> <span>(123) 456-7890</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-email-outline mdi-24px"></i><span class="fw-semibold mx-2">Email:</span> <span>ramin@test.com</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-phone-outline mdi-24px"></i><span class="fw-semibold mx-2">Əlaqə:</span> <span>{{ Auth::user()->phone_number}}</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-email-outline mdi-24px"></i><span class="fw-semibold mx-2">Email:</span> <span>{{ Auth::user()->email}}</span></li>
         </ul>
       </div>
     </div>
@@ -97,15 +97,15 @@
       <div class="card-body">
         <small class="card-text text-uppercase text-muted">İş təcrübəsi</small>
         <ul class="list-unstyled my-3 py-1">
-          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-account-outline mdi-24px"></i><span class="fw-semibold mx-2">Adı və Soyadı:</span> <span>Ramin Şıxəliyev</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-star-outline mdi-24px"></i><span class="fw-semibold mx-2">Vəzifə:</span> <span>Baş mütəxəssis</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-flag-outline mdi-24px"></i><span class="fw-semibold mx-2">Ölkə:</span> <span>Azərbaycan</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-account-outline mdi-24px"></i><span class="fw-semibold mx-2">Adı və Soyadı:</span> <span>{{ Auth::user()->fullname }}</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-star-outline mdi-24px"></i><span class="fw-semibold mx-2">Vəzifə:</span> <span>{{ Auth::user()->position}}</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-flag-outline mdi-24px"></i><span class="fw-semibold mx-2">Ölkə:</span> <span>{{ Auth::user()->country}}</span></li>
         </ul>
         <small class="card-text text-uppercase text-muted">Əlaqələr</small>
         <ul class="list-unstyled my-3 py-1">
-          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-phone-outline mdi-24px"></i><span class="fw-semibold mx-2">Daxili nömrə:</span> <span>(1209)</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-phone-outline mdi-24px"></i><span class="fw-semibold mx-2">Əlaqə:</span> <span>(123) 456-7890</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-email-outline mdi-24px"></i><span class="fw-semibold mx-2">Email:</span> <span>ramin@test.com</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-phone-outline mdi-24px"></i><span class="fw-semibold mx-2">Daxili nömrə:</span> <span>{{ Auth::user()->internal_number}}</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-phone-outline mdi-24px"></i><span class="fw-semibold mx-2">Əlaqə:</span> <span>{{ Auth::user()->phone_number}}</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="mdi mdi-email-outline mdi-24px"></i><span class="fw-semibold mx-2">Email:</span> <span>{{ Auth::user()->email}}</span></li>
         </ul>
       </div>
     </div>

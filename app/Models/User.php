@@ -21,13 +21,20 @@ class User extends Authenticatable
     public static int $deactive=1;   //its equal 1 bceause it check deactived users
     /**
      * The attributes that are mass assignable.
-     *
+     
      * @var array<int, string>
      */
     protected $fillable = [
         'name',
+        'fullname',
+        'country',
+        'phone_number',
+        'internal number',
         'email',
         'password',
+        'position',
+        'department',
+        'started_work',
         'role',
         'deactive',
     ];

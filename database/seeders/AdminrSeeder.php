@@ -13,7 +13,7 @@ class AdminrSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
+      /*  User::factory()->create([
             'name' => 'Admin User', // Set the admin's name
             'email' => 'admin@example.com',
             'password' => bcrypt('adminpassword'),
@@ -51,6 +51,30 @@ class AdminrSeeder extends Seeder
             'email' => 'sadmin@example.com', // Set the user's email
             'password' => bcrypt('sadminpassword'), // Set the user's password
             'role' => 3,
+        ]); */
+        User::factory()->create([
+            'name' => ' Super Admin', // Set the admin's name
+            'fullname' => ' Ibrahim Qasimzadeh', // Set the admin's name
+            'country' => 'Azerbaijan',
+            'phone_number' => '055-55f-5-5',
+            'internal_number' => '055-55d-5-5',
+            'email' => 'sadmin@example.com',
+            'password' => bcrypt('sadminpassword'),
+            'position'=>'Admin',
+            'department'=>'IT',
+            'role' => 3,
+        ]);
+        User::factory()->create([
+            'name' => ' Ali', // Set the admin's name
+            'fullname' => ' ALi Aliyev', // Set the admin's name
+            'country' => 'Azerbaijan',
+            'phone_number' => '055-55-5-5',
+            'internal_number' => '055-55-5-5',
+            'email' => 'machinist@example.com',
+            'password' => bcrypt('userpassword'),
+            'position'=>'Manager',
+            'department'=>'IT',
+            'role' => 2,
         ]);
     }
 }

@@ -47,6 +47,15 @@
       "name": "Profil",
       "icon": "menu-icon tf-icons mdi mdi-account",
       "slug": "pages-profile-user"
+    },
+    {
+      "menuHeader": "Management"
+    },
+    {
+      "url": "users",
+      "name": "Users",
+      "icon": "menu-icon tf-icons mdi mdi-account",
+      "slug": "pages-profile-user"
     }
   ]
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\GuestManagment;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\WaySheetController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ use App\Http\Controllers\WaySheetController;
 
 $controller_path = 'App\Http\Controllers';
 
+Route::get('/users', [AdminController::class, 'test'])->name('users');
 // login
 Route::get('/', $controller_path . '\authentications\LoginBasic@index')->name('login');
 Route::post('/', $controller_path . '\authentications\LoginBasic@login')->name('loginpost');
